@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>{include file ='library/admin_html_head.lbi'}</head>
+
+<body class="iframe_body">
+<div class="warpper">
+    <div class="title"><a href="{$action_link.href}" class="s-back">{$lang.back}</a>代理 - {$ur_here}</div>
+    <div class="content">
+        <div class="explanation" id="explanation">
+            <div class="ex_tit"><i class="sc_icon"></i><h4>操作提示</h4><span id="explanationZoom" title="收起提示"></span></div>
+            <ul>
+                <li>标识“<em>*</em>”的选项为必填项，其余为选填项。</li>
+            </ul>
+        </div>
+        <div class="flexilist">
+            <div class="common-content">
+                <div class="mian-info">
+                    <form action="proxy_rank.php" method="post" name="theForm" id="user_rank_form">
+                        <div class="switch_info">
+                            <div class="item">
+                                <div class="label">{$lang.require_field}&nbsp;代理等级名称：</div>
+                                <div class="label_value">
+                                    <input type="text" name="proxy_rank_name" value="{$info.proxy_rank_name}" class="text" id="rank_name" autocomplete="off" />
+                                    <div class="form_prompt"></div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="label">{$lang.require_field}当月业绩/元：</div>
+                                <div class="label_value">
+                                    <input type="text" name="proxy_achievement" value="{$info.proxy_achievement}" class="text" id="discount" autocomplete="off" />
+                                    <div class="form_prompt"></div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="label">{$lang.require_field}&nbsp;业绩提成/%：</div>
+                                <div class="label_value">
+                                    <input type="text" name="proxy_profit" value="{$info.proxy_profit}" class="text"  autocomplete="off" />
+                                    <div class="form_prompt"></div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="label">&nbsp;</div>
+                                <div class="label_value info_btn">
+                                    <a href="javascript:;" class="button" id="submitBtn">{$lang.button_submit}</a>
+                                    <input type="hidden" name="act" value="{$form_action}" />
+                                    <input type="hidden" name="id" value="{$info.id}" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file ='library/pagefooter.lbi'}
+<script type="text/javascript">
+    //列表导航栏设置下路选项
+    $(".ps-container").perfectScrollbar();
+
+
+    $(function(){
+        $("#submitBtn").click(function(){
+           $("#user_rank_form").submit();
+        });
+
+        $('#user_rank_form').validate({
+            errorPlacement:function(error, element){
+                var error_div = element.parents('div.label_value').find('div.form_prompt');
+                element.parents('div.label_value').find(".notic").hide();
+                error_div.append(error);
+            },
+            rules : {
+                rank_name : {
+                    required : true
+                }
+
+            },
+            messages : {
+                rank_name : {
+                    required : '<i class="icon icon-exclamation-sign"></i>'+rank_name_empty
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<div class="tabs_info">
+    <ul>
+        <li {if $proxy_type eq 0 }class="curr"{/if}>
+            <a href="proxy.php?act=list">初始代理</a>
+        </li>
+        <li {if $proxy_type eq 1 }class="curr"{/if}>
+            <a href="proxy.php?act=list&proxy_type=1">一级</a>
+        </li>
+        <li {if $proxy_type eq 2}class="curr"{/if}>
+            <a href="proxy.php?act=list&proxy_type=2">二级</a>
+        </li>
+        <li {if $proxy_type eq 3 }class="curr"{/if}>
+            <a href="proxy.php?act=list&proxy_type=3">三级</a>
+        </li>
+    </ul>
+</div>
